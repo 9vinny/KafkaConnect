@@ -23,57 +23,57 @@ configuration for the Kafka Connect process, containing common configuration suc
 ## Lab Steps
 (1) Start Kafka and Zookeeper Server (if you haven't yet)
 
-1. `cd /opt/kafka_2.12-1.1.0/`  
+* `cd /opt/kafka_2.12-1.1.0/`  
 
-2. `bin/kafka-server-start.sh config/server.properties`
+* `bin/kafka-server-start.sh config/server.properties`
 
 (2) Create a new topic in a **NEW** Terminal
 
-1. `cd /opt/kafka_2.12-1.1.0/`  
+* `cd /opt/kafka_2.12-1.1.0/`  
 
-2. `bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic connect-test`
+* `bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic connect-test`
 
 (3) Create some seed data on **NEW** Terminal
 
-1. `cd /opt/kafka_2.12-1.1.0/`  
+* `cd /opt/kafka_2.12-1.1.0/`  
 
-2. `echo -e "foo\nbar" > test.txt`  
+* `echo -e "foo\nbar" > test.txt`  
 
-3. It is very important to make sure we create the file under this directory (not any sub-directories) to accommadate the default setting in the connectors' configuration, unless you otherwise change the config files.
+* It is very important to make sure we create the file under this directory (not any sub-directories) to accommadate the default setting in the connectors' configuration, unless you otherwise change the config files.
 
 (4) Always check to see whether Kafka Connect process is still running in the background.
 
 Kafka Connect Kafka Connect is intended to be run as a service, by default KafkaConnect Worker runs on port `8083`. And `Ctrl + Z` might not be able to kill it succesfully in the background. Same as `kill` or `pkill` command. 
 
-1. `cd /opt/kafka_2.12-1.1.0/`  
+* `cd /opt/kafka_2.12-1.1.0/`  
 
-2. `netstat -tulpn | grep 8083`  
+* `netstat -tulpn | grep 8083`  
 
-3. `kill -9 <PID from grep>`  
+* `kill -9 <PID from grep>`  
 
-4. run `netstat -tulpn | grep 8083` again to make sure previous KafkaConnect Worker process is killed.
+* run `netstat -tulpn | grep 8083` again to make sure previous KafkaConnect Worker process is killed.
 
-5. ![Kill background worker process](Images/kill_worker_in_background.png)
+* ![Kill background worker process](Images/kill_worker_in_background.png)
 
 (5) In the same Terminal as above, run the KafkaConnect process
 
-1. `bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties config/connect-file-sink.properties`
+* `bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties config/connect-file-sink.properties`
 
-2. You'll see a number of log messages, including some indicating that the connectors are being instantiated. 
+* You'll see a number of log messages, including some indicating that the connectors are being instantiated. 
 
-3. Then, the source connector should start reading lines from `test.txt` and producing them to the topic `connect-test`.
+* Then, the source connector should start reading lines from `test.txt` and producing them to the topic `connect-test`.
 
-4. And the sink connector should start reading messages from the topic `connect-test` and write them to the file `test.sink.txt`.
+* And the sink connector should start reading messages from the topic `connect-test` and write them to the file `test.sink.txt`.
 
 (6) Verify whether the data has been delivered through the pipeline by examining the output file.
 
-1. `cd /opt/kafka_2.12-1.1.0/`  
+* `cd /opt/kafka_2.12-1.1.0/`  
 
-2. `more test.sink.txt`
+* `more test.sink.txt`
 
 (7) Data is being stored in the Kafka topic `connect-test`, so we can also run a console consumer to see the data in the topic
 
-1. `bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic connect-test --from-beginning`
+* `bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic connect-test --from-beginning`
 
 
 ## Assignment
@@ -95,9 +95,9 @@ Kafka Connect Kafka Connect is intended to be run as a service, by default Kafka
 Note: since both source and sink connectors can track offsets, so if you already consume the same file with the same content using these connectors once, then the next time you run it, the same content won't be flushed again. If somehow you want to re-run the process for same content, please recreate the docker image by running `docker-compose up --force-recreate`
 
 ## References:
-https://kafka.apache.org/quickstart#quickstart_kafkaconnect 
-https://docs.confluent.io/current/connect/quickstart.html  
-https://docs.confluent.io/current/connect/connect-filestream/filestream_connector.html  
+https://kafka.apache.org/quickstart#quickstart_kafkaconnect   
+https://docs.confluent.io/current/connect/quickstart.html    
+https://docs.confluent.io/current/connect/connect-filestream/filestream_connector.html    
 http://bigdatums.net/2017/06/22/writing-data-from-apache-kafka-to-text-file/
 
 
