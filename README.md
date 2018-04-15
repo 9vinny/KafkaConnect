@@ -1,4 +1,4 @@
-# KafkaConne# KafkaConnect 
+#KafkaConnect 
 #(Kafka FileStream Connectors)
 ### --Use Kafka Connect to import/export data
 
@@ -95,9 +95,9 @@ Kafka Connect Kafka Connect is intended to be run as a service, by default Kafka
 Note: since both source and sink connectors can track offsets, so if you already consume the same file with the same content using these connectors once, then the next time you run it, the same content won't be flushed again. If somehow you want to re-run the process for same content, please recreate the docker image by running `docker-compose up --force-recreate`
 
 ## References:
-https://kafka.apache.org/quickstart#quickstart_kafkaconnect
-https://docs.confluent.io/current/connect/quickstart.html
-https://docs.confluent.io/current/connect/connect-filestream/filestream_connector.html
+https://kafka.apache.org/quickstart#quickstart_kafkaconnect 
+https://docs.confluent.io/current/connect/quickstart.html  
+https://docs.confluent.io/current/connect/connect-filestream/filestream_connector.html  
 http://bigdatums.net/2017/06/22/writing-data-from-apache-kafka-to-text-file/
 
 
