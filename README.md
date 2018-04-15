@@ -1,5 +1,5 @@
-#KafkaConnect 
-#(Kafka FileStream Connectors)
+# KafkaConnect  (Kafka FileStream Connectors)
+
 ### --Use Kafka Connect to import/export data
 
 ## Introduction
