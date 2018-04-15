@@ -53,7 +53,7 @@ Kafka Connect Kafka Connect is intended to be run as a service, by default Kafka
 
 4. run `netstat -tulpn | grep 8083` again to make sure previous KafkaConnect Worker process is killed.
 
-5. [Kill background worker process](Images/kill_worker_in_background.png)
+5. ![Kill background worker process](Images/kill_worker_in_background.png)
 
 (5) In the same Terminal as above, run the KafkaConnect process
 
@@ -86,10 +86,10 @@ Kafka Connect Kafka Connect is intended to be run as a service, by default Kafka
 (4) Run the FileStreaming process in standalone mode as in the lab
 
 (5) Make a screenshot to verify that `sink.syllabus.txt` is under your main directory and get content delivered as shown in the example below:  
-[View from CLI](Images/view_from_CLI.png)
+![View from CLI](Images/view_from_CLI.png)
 
 (6) After running the consumer, make a screenshot of the consumed messages in json format:  
-[View from consumer](Images/view_from_consumer.png)
+![View from consumer](Images/view_from_consumer.png)
 
 
 Note: since both source and sink connectors can track offsets, so if you already consume the same file with the same content using these connectors once, then the next time you run it, the same content won't be flushed again. If somehow you want to re-run the process for same content, please recreate the docker image by running `docker-compose up --force-recreate`
