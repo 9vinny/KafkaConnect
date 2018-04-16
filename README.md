@@ -23,19 +23,19 @@ configuration for the Kafka Connect process, containing common configuration suc
 ## Lab Steps
 (1) Start Kafka and Zookeeper Server (if you haven't yet)
 
-* `cd /opt/kafka_2.12-1.1.0/`  
+* `cd /opt/kafka_2.11-1.1.0/`  
 
 * `bin/kafka-server-start.sh config/server.properties`
 
 (2) Create a new topic in a **NEW** Terminal
 
-* `cd /opt/kafka_2.12-1.1.0/`  
+* `cd /opt/kafka_2.11-1.1.0/`  
 
 * `bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic connect-test`
 
 (3) Create some seed data on **NEW** Terminal
 
-* `cd /opt/kafka_2.12-1.1.0/`  
+* `cd /opt/kafka_2.11-1.1.0/`  
 
 * `echo -e "foo\nbar" > test.txt`  
 
@@ -45,7 +45,7 @@ configuration for the Kafka Connect process, containing common configuration suc
 
 Kafka Connect Kafka Connect is intended to be run as a service, by default KafkaConnect Worker runs on port `8083`. And `Ctrl + Z` might not be able to kill it succesfully in the background. Same as `kill` or `pkill` command. 
 
-* `cd /opt/kafka_2.12-1.1.0/`  
+* `cd /opt/kafka_2.11-1.1.0/`  
 
 * `netstat -tulpn | grep 8083`  
 
@@ -67,7 +67,7 @@ Kafka Connect Kafka Connect is intended to be run as a service, by default Kafka
 
 (6) Verify whether the data has been delivered through the pipeline by examining the output file.
 
-* `cd /opt/kafka_2.12-1.1.0/`  
+* `cd /opt/kafka_2.11-1.1.0/`  
 
 * `more test.sink.txt`
 
