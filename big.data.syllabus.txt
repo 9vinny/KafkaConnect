@@ -4,4 +4,3 @@ Topic 3: Hive
 Topic 4: Spark
 Topic 5: Kafka
 Topic 6: We decide
-Topic 7: WE ALL MADE IT!!!
